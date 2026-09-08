@@ -1,0 +1,782 @@
+:root {
+    --primary: #572364;
+    --primary-dark: #3f1849;
+    --secondary: #D4AF37;
+    --secondary-hover: #b8952b;
+    --dark: #1a1a1a;
+    --light: #ffffff;
+    --gray: #f5f7fa;
+    --text-muted: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: var(--light);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(87, 35, 100, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    border-radius: 8px; /* Opcional: suaviza esquinas del logo cuadrado */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+.footer-inner .logo img {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+}
+
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    gap: 6px;
+    margin-left: 8px;
+}
+
+.lang-switch strong {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.lang-switch a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.lang-switch a:hover {
+    color: var(--secondary);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                url('https://images.unsplash.com/photo-1504893524553-b855bce32c67?q=80&w=1600') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* BOTONES */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .3s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--secondary);
+    color: black;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-hover);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+.btn-dark {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-dark:hover {
+    background: var(--primary-dark);
+}
+
+.btn-outline-dark {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline-dark:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* SECCIONES BÁSICAS */
+section {
+    padding: 90px 0;
+}
+
+.section-kicker {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section-title p {
+    color: var(--text-muted);
+}
+
+/* INTRO */
+.intro {
+    background: white;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    align-items: center;
+}
+
+.intro-grid h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* DESTINOS Y ENCABEZADOS DE RUTA */
+.destination-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 40px 0 20px 0;
+    border-bottom: 2px solid var(--gray);
+    padding-bottom: 15px;
+}
+
+.destination-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.destination-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--secondary);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.destination-heading h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.altea-heading {
+    margin-top: 70px;
+}
+
+/* TARJETAS DE TOURS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.image-seda { background-image: url(https://multimedia.comunitatvalenciana.com/A0375C0AC2AC42CF8F26C36E11EBAB92/img/51EAE790A61549A095CED973ABC1DAA8/Lonja_Seda_3.jpg?responsive); }
+.image-valencia { background-image: url(https://valenciaesturismo.com/wp-content/uploads/2023/04/serranos-towers-things-to-do-in-valencia.jpg); }
+.image-modernista { background-image: url(https://i.pinimg.com/736x/b3/de/c8/b3dec869d4c7758ddd38a150fa61f5cf.jpg); }
+.image-bici { background-image: url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=600'); }
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tag {
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(87, 35, 100, 0.1);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.card-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: .2s;
+}
+
+.card-link:hover {
+    color: var(--secondary);
+}
+
+/* FREE TOUR NOTE */
+.free-tour-note {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--gray);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary);
+    margin: 40px 0;
+}
+
+.note-icon {
+    font-size: 1.8rem;
+    color: var(--secondary);
+}
+
+/* SECCIÓN ALTEA & TOUR PRIVADO */
+.altea-feature {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.altea-image {
+    min-height: 320px;
+    background: url('https://www.kalitravel.net/blog/wp-content/uploads/altea-church-old-town-twilight-costa-blanca-spain.jpg') center/cover no-repeat;
+}
+
+.altea-content {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.altea-content h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.altea-content p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.private-tour {
+    margin-top: 50px;
+    background: var(--gray);
+    padding: 40px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.private-tour h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+/* VIAJES / ISLANDIA */
+.travel-section {
+    background: var(--gray);
+}
+
+.travel-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.travel-image {
+    min-height: 350px;
+    background: url('https://img.locationscout.net/images/2016-10/godafoss-the-devine-waterfall-iceland_l.jpeg') center/cover no-repeat;
+}
+
+.travel-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.travel-content h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+.travel-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0 30px 0;
+    font-weight: 500;
+    color: #444;
+}
+
+/* SOBRE MÍ */
+.about {
+    background: white;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: center;
+}
+
+.about-copy h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+.about-copy p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.about-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-stat {
+    background: var(--gray);
+    padding: 20px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-stat strong {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-stat span {
+    font-weight: 500;
+    color: #444;
+}
+
+/* TESTIMONIOS */
+.testimonials {
+    background: var(--gray);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stars {
+    color: #f39c12;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+.testimonial p {
+    color: #444;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+.testimonial-author strong {
+    display: block;
+    color: var(--primary);
+}
+
+.testimonial-author span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* CONTACTO */
+.contact {
+    background: var(--primary);
+    color: white;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: start;
+}
+
+.contact-info h2 {
+    font-size: 2.2rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-button {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.contact-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: 2px solid var(--secondary);
+}
+
+.contact-form button {
+    border: none;
+    margin-top: 5px;
+}
+
+.contact-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status {
+    display: none;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.form-status-success {
+    display: block;
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #a5d6a7;
+}
+
+.form-status-error {
+    display: block;
+    background-color: #ffebee;
+    color: #b71c1c;
+    border: 1px solid #ffcdd2;
+}
+
+/* FOOTER */
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.footer-inner p {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ANIMACIÓN REVEAL */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 65px;
+        right: -100%;
+        background: var(--primary);
+        width: 100%;
+        max-width: 300px;
+        height: calc(100vh - 65px);
+        flex-direction: column;
+        padding: 40px 30px;
+        transition: .4s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,.2);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .lang-switch {
+        margin-left: 0;
+        margin-top: 10px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 1.1rem;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .destination-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .private-tour {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
