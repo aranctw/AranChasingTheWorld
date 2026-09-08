@@ -246,7 +246,7 @@
                 </div>
             </div>
 
-            <!-- Formulario conectado a Formspree -->
+            <!-- Formulario con aviso en pantalla -->
             <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgaepwwo" method="POST">
                 <input type="text" name="nombre" placeholder="Nombre" aria-label="Nombre" required>
                 <input type="email" name="email" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
@@ -260,6 +260,7 @@
                 </select>
                 <textarea name="mensaje" rows="5" placeholder="Cuéntame qué estás buscando..." aria-label="Mensaje" required></textarea>
                 <button class="btn btn-primary" type="submit">Enviar consulta</button>
+                <div id="formStatus" class="form-status" role="alert"></div>
             </form>
         </div>
     </section>
@@ -311,6 +312,45 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// Lógica de envío por JS hacia Formspree
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+if (contactForm && formStatus) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+        formStatus.textContent = '';
+        formStatus.className = 'form-status';
+
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                formStatus.textContent = '¡Gracias! Tu mensaje ha sido enviado correctamente.';
+                formStatus.className = 'form-status form-status-success';
+                contactForm.reset();
+            } else {
+                throw new Error('Error en la respuesta');
+            }
+        } catch (error) {
+            formStatus.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo o escribe por WhatsApp.';
+            formStatus.className = 'form-status form-status-error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
+    });
+}
 </script>
 
 </body>
