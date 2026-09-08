@@ -246,12 +246,8 @@
                 </div>
             </div>
 
-            <!-- Formulario conectado a Netlify Forms -->
+            <!-- Formulario conectado a Formspree -->
             <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgaepwwo" method="POST">
-                <input type="hidden" name="form-name" value="contacto" />
-                <p style="display:none">
-                    <label>No rellenar este campo: <input name="bot-field" /></label>
-                </p>
                 <input type="text" name="nombre" placeholder="Nombre" aria-label="Nombre" required>
                 <input type="email" name="email" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
                 <select name="interes" aria-label="¿Qué te interesa?" required>
@@ -264,7 +260,6 @@
                 </select>
                 <textarea name="mensaje" rows="5" placeholder="Cuéntame qué estás buscando..." aria-label="Mensaje" required></textarea>
                 <button class="btn btn-primary" type="submit">Enviar consulta</button>
-                <div id="formStatus" class="form-status" role="alert"></div>
             </form>
         </div>
     </section>
@@ -277,16 +272,14 @@
         </div>
         <p>Persiguiendo experiencias, descubriendo el mundo.</p>
         <p>© 2026 AranChasingTheWorld</p>
-    
     </div>
-        <!-- Enlaces en el Pie de página -->
-        <div class="footer-legal" style="font-size: 0.85rem; opacity: 0.9; margin: 1rem 0;">
-            <p><strong>Archer Travel Service, Inc.</strong> | Sede corporativa: 800 Colorado Blvd, Los Ángeles, CA 90041</p>
-            <p>
-                <a href="https://www.evotravelagent.com/aranchasingtheworld" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Agente Evo Travel</a> | 
-                <a href="https://www.exoticca.com/es?advisor_token=arancha-mendez-019ffb7a-f7c1-73e3-8205-490c304e31d0" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Agente Exoticca</a>
-            </p>
-
+    
+    <div class="footer-legal" style="font-size: 0.85rem; opacity: 0.9; margin: 1rem 0;">
+        <p><strong>Archer Travel Service, Inc.</strong> | Sede corporativa: 800 Colorado Blvd, Los Ángeles, CA 90041</p>
+        <p>
+            <a href="https://www.evotravelagent.com/aranchasingtheworld" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Agente Evo Travel</a> | 
+            <a href="https://www.exoticca.com/es?advisor_token=arancha-mendez-019ffb7a-f7c1-73e3-8205-490c304e31d0" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Agente Exoticca</a>
+        </p>
     </div>
 </footer>
 
@@ -318,44 +311,6 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
-
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-        formStatus.textContent = '';
-        formStatus.className = 'form-status';
-
-        try {
-            const formData = new FormData(contactForm);
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
-            });
-
-            if (response.ok) {
-                formStatus.textContent = '¡Gracias por tu mensaje! Me pondré en contacto contigo muy pronto.';
-                formStatus.className = 'form-status form-status-success';
-                contactForm.reset();
-            } else {
-                throw new Error('Respuesta no satisfactoria');
-            }
-        } catch (error) {
-            formStatus.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo o contáctame por WhatsApp o email.';
-            formStatus.className = 'form-status form-status-error';
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-        }
-    });
-}
 </script>
 
 </body>
