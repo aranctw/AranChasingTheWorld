@@ -59,16 +59,23 @@ def illo(key):
         houses = ''.join(f'<rect x="{x}" y="{y}" width="{w}" height="{250-y}" fill="#fff" opacity=".96"/><rect x="{x+w*0.3}" y="{y+16}" width="{w*0.22}" height="22" rx="2" fill="#2d6f8f"/>' for x, y, w in ((10,150,62),(76,128,52),(250,140,64),(318,158,72),(150,170,60)))
         return f'<svg {W}><defs><linearGradient id="{g}" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8fcde0"/><stop offset=".7" stop-color="#2d7ea6"/><stop offset="1" stop-color="#1c5f84"/></linearGradient></defs><rect width="400" height="250" fill="url(#{g})"/><circle cx="336" cy="52" r="26" fill="#f6e9b8"/>{houses}' \
                '<g><rect x="168" y="112" width="64" height="138" fill="#fff"/><path d="M168 112a32 32 0 0 1 64 0z" fill="#2d6f8f"/><path d="M200 62v18M192 70h16" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M186 250v-34a14 14 0 0 1 28 0v34z" fill="#2d6f8f"/></g></svg>'
-    if key == 'colombia':
-        palms = ''.join(f'<g transform="translate({x} {y}) scale({s})"><path d="M0 0 C 2 -30 -2 -60 3 -90" fill="none" stroke="#5a3a1e" stroke-width="5" stroke-linecap="round"/><g fill="#1f6f66"><path d="M3 -90 q -34 -6 -52 14 q 28 -8 52 -4z"/><path d="M3 -90 q 34 -6 52 14 q -28 -8 -52 -4z"/><path d="M3 -90 q -22 -26 -50 -22 q 30 4 50 22z"/><path d="M3 -90 q 22 -26 50 -22 q -30 4 -50 22z"/><path d="M3 -90 q 0 -30 -4 -40 q 12 14 4 40z"/></g></g>' for x, y, s in ((300, 218, 1), (350, 226, .8), (60, 232, .7)))
-        return f'<svg {W}><defs><linearGradient id="{g}" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f6c94a"/><stop offset=".55" stop-color="#f2a65a"/><stop offset="1" stop-color="#d9658c"/></linearGradient></defs><rect width="400" height="250" fill="url(#{g})"/><circle cx="92" cy="70" r="30" fill="#fbf6ec" opacity=".9"/>' \
-               '<path d="M0 170 L70 96 L120 140 L190 70 L262 150 L320 110 L400 170 V250 H0z" fill="#2c8a63"/><path d="M0 190 L60 140 L130 176 L210 120 L290 180 L360 150 L400 176 V250 H0z" fill="#1f6f66"/>' \
-               '<path d="M0 214 q 50 -12 100 0 t 100 0 t 100 0 t 100 0 V250 H0z" fill="#3bb5c4"/><path d="M0 232 q 50 -10 100 0 t 100 0 t 100 0 t 100 0 V250 H0z" fill="#2a98ac"/>' + palms + '</svg>'
-    if key == 'islandia':
+    if key == 'aurora':
         stars = ''.join(f'<circle cx="{(i*53)%400}" cy="{(i*37)%110+8}" r="{1+(i%3)*0.5}" fill="#fff" opacity="{0.4+(i%4)*0.15}"/>' for i in range(34))
         return f'<svg {W}><defs><linearGradient id="{g}" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#140a1c"/><stop offset="1" stop-color="#3b1a4a"/></linearGradient></defs><rect width="400" height="250" fill="url(#{g})"/>{stars}' \
                '<path d="M-10 120 C 70 40, 130 150, 200 80 S 330 30, 420 100" fill="none" stroke="#5ee0c0" stroke-width="22" opacity=".28"/><path d="M-10 130 C 70 60, 130 160, 200 100 S 330 50, 420 118" fill="none" stroke="#5ee0c0" stroke-width="7" opacity=".6"/>' \
                '<path d="M0 250V170l60-62 44 44 58-80 70 98 52-52 116 82v50z" fill="#27123a"/><path d="M0 250V200l70-48 50 36 80-70 80 78 50-34 70 48v40z" fill="#1f6f66" opacity=".85"/><path d="M162 72l22 32h-44zM234 118l14 20h-28z" fill="#fbf6ec" opacity=".9"/></svg>'
+    if key == 'ring':
+        island = 'M70 150 C 60 112, 96 84, 128 88 C 150 60, 196 56, 224 74 C 262 62, 318 82, 336 118 C 356 140, 340 188, 300 196 C 270 224, 210 214, 186 198 C 150 214, 96 200, 70 150 Z'
+        dots = ''.join(f'<circle cx="{x}" cy="{y}" r="5" fill="#d4af37"/>' for x, y in ((128, 88), (224, 74), (336, 118), (300, 196), (186, 198), (70, 150)))
+        return f'<svg {W}><defs><linearGradient id="{g}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17524b"/><stop offset="1" stop-color="#2e1237"/></linearGradient></defs><rect width="400" height="250" fill="url(#{g})"/>' \
+               f'<path d="{island}" fill="#fbf6ec" opacity=".16"/><path d="{island}" fill="none" stroke="#fbf6ec" stroke-width="3" opacity=".5"/>' \
+               f'<path d="{island}" fill="none" stroke="#d4af37" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" transform="translate(200 133) scale(.82) translate(-200 -133)"/>{dots}' \
+               '<g transform="translate(300 36) rotate(35)" fill="#fbf6ec"><path d="M0 0l30 8-30 8 6-8z"/><path d="M8 4l-12-10 4 0 14 8z"/></g></svg>'
+    if key == 'tronos':
+        return f'<svg {W}><defs><linearGradient id="{g}" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1c2a4f"/><stop offset=".55" stop-color="#7a4a78"/><stop offset="1" stop-color="#e6a24a"/></linearGradient></defs><rect width="400" height="250" fill="url(#{g})"/>' \
+               '<ellipse cx="90" cy="48" rx="90" ry="18" fill="#fff" opacity=".1"/><ellipse cx="300" cy="30" rx="100" ry="16" fill="#fff" opacity=".08"/><circle cx="318" cy="150" r="30" fill="#f6e9b8" opacity=".95"/>' \
+               '<path d="M0 250V190l90-18 70-80 40-6 30 62 70 16 100 24v62z" fill="#2b1840"/><path d="M92 250V176c20 6 46 6 60 0v74z" fill="#fbf6ec" opacity=".85"/><path d="M104 250V182M120 250V180M136 250V182" stroke="#2b1840" stroke-width="2" opacity=".35"/>' \
+               '<path d="M0 250V218c60-16 120 4 200-6s140 6 200-4v42z" fill="#1c1030"/></svg>'
     raise KeyError(key)
 
 def photo_set(key):
@@ -207,6 +214,12 @@ def tour_card(lang, key):
 <span class="tag">{E(t['tag'])}</span><h4><a href="{url_tour(lang,key)}">{E(t['name'])}</a></h4><p>{E(t['short'])}</p>
 <span class="link-arrow">{ui['more_info']} {icon('arrow')}</span></div></article>'''
 
+def trip_card(lang, key):
+    t = TRIPS[key][lang]; ui = UI[lang]
+    return f'''<article class="card reveal"><div class="card-media">{media(key, t['alt'])}</div><div class="card-body">
+<span class="tag gold">{E(t['badge'])}</span><h4><a href="{url_trip(lang,key)}">{E(t['name'])}</a></h4><p>{E(t['card_p'])}</p>
+<span class="link-arrow">{HOME[lang]['trip_more']} {icon('arrow')}</span></div></article>'''
+
 # ------------------------------------------------------------------ HOME
 CAR = {'es': ('Anterior', 'Siguiente', 'Ir a', 'carrusel'), 'en': ('Previous', 'Next', 'Go to', 'carousel'), 'it': ('Precedente', 'Successivo', 'Vai a', 'carosello')}
 
@@ -316,19 +329,24 @@ def build_trip(lang, key):
     hl = ''.join(f'<li>{icon("check")}<span>{E(x)}</span></li>' for x in t['hl'])
     lead = ''.join(f'<p>{E(p)}</p>' for p in t['lead'])
     wl = wa(lang, t['wa'])
-    side = f'''<aside class="side reveal"><div class="side-card" style="background:var(--purple-deep);color:#fff"><h2 style="color:#fff">{E(t['badge'])} · {E(t['name'])}</h2>
-<dl><div><dt style="color:var(--gold)">{ui['type']}</dt><dd style="color:#fff">{E(t['type'])}</dd></div><div><dt style="color:var(--gold)">{ui['duration']}</dt><dd style="color:#fff">{E(t['hl'][2])}</dd></div></dl>
-<p style="font-weight:500">{E(t['wl'])}</p>{waitlist_form(lang, key)}<a class="btn btn-wa btn-block" style="margin-top:14px" href="{wl}" target="_blank" rel="noopener">{icon('wa')} {ui['wa_long']}</a></div></aside>'''
+    rows = ''.join(f'<div><dt style="color:var(--gold)">{E(k)}</dt><dd style="color:#fff">{E(v)}</dd></div>' for k, v in t['rows'])
+    side = f'''<aside class="side reveal"><div class="side-card" style="background:var(--purple-deep);color:#fff"><h2 style="color:#fff">{E(t['price'])} <small style="display:block;font-size:.8rem;font-weight:500;color:#d9c6e0">{E(t['per'])}</small></h2>
+<dl>{rows}</dl>
+<p style="font-weight:500">{E(t['wl'])}</p>{waitlist_form(lang, key)}<a class="btn btn-wa btn-block" style="margin-top:14px" href="{wl}" target="_blank" rel="noopener">{icon('wa')} {ui['trip_cta']}</a></div></aside>'''
+    inc = f'<section class="reveal"><h2>{ui["incl"]}</h2><ul class="ticks">{"".join(f"<li>{icon('check')}<span>{E(x)}</span></li>" for x in t["inc"])}</ul></section>' if t['inc'] else ''
+    note = f'<p class="trip-note reveal">{E(t["note"])}</p>' if t['note'] else ''
+    others = [k for k in TRIP_ORDER if k != key]
     crumb = f'<nav class="crumbs container" aria-label="{ui["breadcrumb"]}"><ol><li><a href="{url_home(lang)}">{ui["home_label"]}</a></li><li><a href="{url_home(lang)}#viajes">{h["trip_k"]}</a></li><li aria-current="page">{E(t["name"])}</li></ol></nav>'
-    jsonld = [{'@context': 'https://schema.org', '@type': 'TouristTrip', 'name': t['name'], 'description': t['desc'], 'url': abs_(cur), 'inLanguage': lang, 'provider': {'@id': DOMAIN + '/#org'}},
+    jsonld = [{'@context': 'https://schema.org', '@type': 'TouristTrip', 'name': t['name'], 'description': t['desc'], 'url': abs_(cur), 'inLanguage': lang, 'provider': {'@id': DOMAIN + '/#org'}, 'offers': {'@type': 'Offer', 'price': str(t['price_n']), 'priceCurrency': 'EUR', 'url': abs_(cur), 'availability': 'https://schema.org/InStock'}},
               {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
                   {'@type': 'ListItem', 'position': 1, 'name': ui['home_label'], 'item': abs_(url_home(lang))},
-                  {'@type': 'ListItem', 'position': 2, 'name': t['name'], 'item': abs_(cur)}]}]
+                  {'@type': 'ListItem', 'position': 2, 'name': ui['trips_label'], 'item': abs_(url_home(lang) + '#viajes')},
+                  {'@type': 'ListItem', 'position': 3, 'name': t['name'], 'item': abs_(cur)}]}]
     out = head(lang, t['title'], t['desc'], alts, cur, jsonld) + header(lang, alts, url_home(lang)) + f'''<main id="main">{crumb}
-<section class="page-hero"><div class="container page-hero-grid"><div><span class="tag gold">{E(t['tag'])}</span><h1>{E(t['h1'])}</h1><div class="lead">{lead}</div></div><div class="media">{media(key, t['alt'], eager=True)}</div></div></section>
-<div class="container tour-layout"><div class="tour-main"><section class="reveal"><h2>{h['trip_k']}</h2><ul class="ticks">{hl}</ul></section>
-<section class="reveal"><h2>{ui['faq']}</h2><div class="faq-list">{''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in h['faq'][1:])}</div></section></div>{side}</div>
-<section class="related"><div class="container"><h2>{ui['more_tours']}</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">{''.join(tour_card(lang, k) for k in TOUR_ORDER[:3])}</div></div></section>
+<section class="page-hero"><div class="container page-hero-grid"><div><span class="tag gold">{E(t['tag'])}</span><h1>{E(t['h1'])}</h1><div class="lead">{lead}</div><div class="hero-actions"><a class="btn btn-wa" href="{wl}" target="_blank" rel="noopener">{icon('wa')} {ui['trip_cta']}</a><a class="btn btn-ghost" href="{url_home(lang)}#viajes">{ui['all_trips']}</a></div></div><div class="media">{media(key, t['alt'], eager=True)}</div></div></section>
+<div class="container tour-layout"><div class="tour-main"><section class="reveal"><h2>{ui['seeing']}</h2><ul class="ticks">{hl}</ul></section>{inc}{note}
+<section class="reveal"><h2>{ui['faq']}</h2><div class="faq-list">{''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in h['faq'][1:5])}</div></section></div>{side}</div>
+<section class="related"><div class="container"><h2>{ui['more_trips']}</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">{''.join(trip_card(lang, k) for k in others)}</div></div></section>
 </main>''' + footer(lang) + page_end()
     write(cur, out)
 
@@ -353,10 +371,10 @@ def build_legal():
 <h2>4. Servicios de terceros y enlaces</h2><p>Esta web incluye enlaces a Evo Travel y Exoticca, a través de Archer Travel Service, Inc. Las reservas de esos viajes se contratan y gestionan con dichas empresas, que son responsables de sus condiciones. Los enlaces externos se ofrecen a título informativo y el titular no responde de sus contenidos.</p>
 <h2>5. Legislación aplicable</h2><p>Este aviso se rige por la legislación española. Para cualquier controversia serán competentes los juzgados y tribunales que correspondan conforme a la normativa vigente.</p>''', 'Aviso legal e información del titular del sitio web aranchasingworld.com.')
     legal_page('privacidad', 'Política de privacidad', f'''<h2>1. Responsable del tratamiento</h2>{owner}
-<h2>2. Qué datos tratamos y para qué</h2><ul><li><strong>Formulario de contacto:</strong> nombre, correo electrónico, interés, idioma y mensaje, para responder a tu consulta o gestionar tu reserva.</li><li><strong>Información y lista de espera de los viajes (Colombia e Islandia):</strong> correo electrónico e idioma, para enviarte la información del viaje o avisarte cuando se abran plazas.</li></ul>
+<h2>2. Qué datos tratamos y para qué</h2><ul><li><strong>Formulario de contacto:</strong> nombre, correo electrónico, interés, idioma y mensaje, para responder a tu consulta o gestionar tu reserva.</li><li><strong>Solicitud de información de los viajes a Islandia:</strong> correo electrónico e idioma, para enviarte la información del viaje que te interesa.</li></ul>
 <h2>3. Base jurídica</h2><p>Tu consentimiento (art. 6.1.a RGPD) al marcar la casilla y enviar el formulario, y la aplicación de medidas precontractuales a petición tuya cuando solicitas información o reserva (art. 6.1.b RGPD).</p>
 <h2>4. Destinatarios y transferencias</h2><p>Los formularios se gestionan mediante Formspree (Formspree, Inc.), proveedor con servidores en Estados Unidos que actúa como encargado del tratamiento, con las garantías previstas en el RGPD para las transferencias internacionales. No se ceden datos a otros terceros salvo obligación legal. Si me escribes por WhatsApp, WhatsApp trata también tus datos según su propia política.</p>
-<h2>5. Conservación</h2><p>Conservaré tus datos el tiempo necesario para atender tu consulta o, en las solicitudes de información y listas de espera de los viajes, hasta que te des de baja o el viaje se haya comunicado o realizado, y después durante los plazos legales aplicables.</p>
+<h2>5. Conservación</h2><p>Conservaré tus datos el tiempo necesario para atender tu consulta o, en las solicitudes de información de los viajes, hasta que te des de baja o el viaje se haya comunicado o realizado, y después durante los plazos legales aplicables.</p>
 <h2>6. Tus derechos</h2><p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {own('email', 'email de contacto')}. Si consideras que no se han atendido, puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).</p>''', 'Política de privacidad de aranchasingworld.com: qué datos se tratan, para qué y cómo ejercer tus derechos.')
     legal_page('cookies', 'Política de cookies', '''<h2>Uso de cookies</h2><p>Este sitio web <strong>no utiliza cookies propias ni de terceros</strong> para analítica, publicidad o personalización. Las fuentes tipográficas y los iconos se sirven desde este mismo dominio, por lo que no se envían datos de tu navegación a terceros al cargar la página.</p>
 <h2>Servicios externos</h2><p>Al enviar un formulario, tus datos se transmiten a Formspree para entregármelos (consulta la <a href="/privacidad/">política de privacidad</a>). Los enlaces a Instagram, Facebook, TikTok, WhatsApp, Evo Travel o Exoticca te llevan a sitios externos con sus propias políticas.</p>
@@ -382,6 +400,10 @@ def build_misc():
     open(os.path.join(SITE, 'CNAME'), 'w').write('aranchasingworld.com')
     open(os.path.join(SITE, '.nojekyll'), 'w').write('')
     Image.open(os.path.join(SITE, 'assets/img/favicon-48.png')).save(os.path.join(SITE, 'favicon.ico'), sizes=[(48, 48), (32, 32)])
+    for lang, old in (('es', '/viaje-colombia/'), ('en', '/en/colombia-trip/'), ('it', '/it/viaggio-colombia/'), ('es', '/viaje-islandia/'), ('en', '/en/iceland-trip/'), ('it', '/it/viaggio-islanda/')):
+        full = os.path.join(SITE, old.strip('/'), 'index.html'); os.makedirs(os.path.dirname(full), exist_ok=True)
+        dest = url_home(lang) + '#viajes'
+        open(full, 'w', encoding='utf-8').write(f'<!DOCTYPE html><html lang="{lang}"><head><meta charset="utf-8"><title>{BRAND}</title><link rel="canonical" href="{DOMAIN}{url_home(lang)}"><meta http-equiv="refresh" content="0; url={dest}"><meta name="robots" content="noindex,follow"></head><body><a href="{dest}">{BRAND}</a></body></html>')
     # URL antigua: redirige a la versión inglesa nueva
     open(os.path.join(SITE, 'index-en.html'), 'w').write(f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>{BRAND}</title><link rel="canonical" href="{DOMAIN}/en/"><meta http-equiv="refresh" content="0; url=/en/"><meta name="robots" content="noindex,follow"></head><body><a href="/en/">{DOMAIN}/en/</a></body></html>')
 
