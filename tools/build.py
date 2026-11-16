@@ -214,6 +214,17 @@ def tour_card(lang, key):
 <span class="tag">{E(t['tag'])}</span><h4><a href="{url_tour(lang,key)}">{E(t['name'])}</a></h4><p>{E(t['short'])}</p>
 <span class="link-arrow">{ui['more_info']} {icon('arrow')}</span></div></article>'''
 
+def poster(key, alt):
+    """Cartel del viaje (photos/cartel-<key>.png|jpg) -> assets/img/tours/cartel-<key>.webp"""
+    for ext in ('png', 'jpg', 'jpeg', 'webp'):
+        p = os.path.join(PHOTOS, f'cartel-{key}.{ext}')
+        if os.path.exists(p):
+            out = os.path.join(SITE, 'assets/img/tours'); os.makedirs(out, exist_ok=True)
+            im = Image.open(p).convert('RGB'); w = min(900, im.width); h = round(im.height * w / im.width)
+            im.resize((w, h), Image.LANCZOS).save(os.path.join(out, f'cartel-{key}.webp'), 'WEBP', quality=82, method=6)
+            return f'<figure class="poster reveal"><img src="/assets/img/tours/cartel-{key}.webp" width="{w}" height="{h}" alt="{E(alt)}" loading="lazy" decoding="async"></figure>'
+    return ''
+
 def trip_card(lang, key):
     t = TRIPS[key][lang]; ui = UI[lang]
     return f'''<article class="card reveal"><div class="card-media">{media(key, t['alt'])}</div><div class="card-body">
@@ -336,6 +347,7 @@ def build_trip(lang, key):
     inc = f'<section class="reveal"><h2>{ui["incl"]}</h2><ul class="ticks">{"".join(f"<li>{icon('check')}<span>{E(x)}</span></li>" for x in t["inc"])}</ul></section>' if t['inc'] else ''
     note = f'<p class="trip-note reveal">{E(t["note"])}</p>' if t['note'] else ''
     others = [k for k in TRIP_ORDER if k != key]
+    cartel = poster(key, t['name'] + ' — ' + ui['trips_label'])
     crumb = f'<nav class="crumbs container" aria-label="{ui["breadcrumb"]}"><ol><li><a href="{url_home(lang)}">{ui["home_label"]}</a></li><li><a href="{url_home(lang)}#viajes">{h["trip_k"]}</a></li><li aria-current="page">{E(t["name"])}</li></ol></nav>'
     jsonld = [{'@context': 'https://schema.org', '@type': 'TouristTrip', 'name': t['name'], 'description': t['desc'], 'url': abs_(cur), 'inLanguage': lang, 'provider': {'@id': DOMAIN + '/#org'}, 'offers': {'@type': 'Offer', 'price': str(t['price_n']), 'priceCurrency': 'EUR', 'url': abs_(cur), 'availability': 'https://schema.org/InStock'}},
               {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
@@ -344,7 +356,7 @@ def build_trip(lang, key):
                   {'@type': 'ListItem', 'position': 3, 'name': t['name'], 'item': abs_(cur)}]}]
     out = head(lang, t['title'], t['desc'], alts, cur, jsonld) + header(lang, alts, url_home(lang)) + f'''<main id="main">{crumb}
 <section class="page-hero"><div class="container page-hero-grid"><div><span class="tag gold">{E(t['tag'])}</span><h1>{E(t['h1'])}</h1><div class="lead">{lead}</div><div class="hero-actions"><a class="btn btn-wa" href="{wl}" target="_blank" rel="noopener">{icon('wa')} {ui['trip_cta']}</a><a class="btn btn-ghost" href="{url_home(lang)}#viajes">{ui['all_trips']}</a></div></div><div class="media">{media(key, t['alt'], eager=True)}</div></div></section>
-<div class="container tour-layout"><div class="tour-main"><section class="reveal"><h2>{ui['seeing']}</h2><ul class="ticks">{hl}</ul></section>{inc}{note}
+<div class="container tour-layout"><div class="tour-main"><section class="reveal"><h2>{ui['seeing']}</h2><ul class="ticks">{hl}</ul></section>{inc}{cartel}{note}
 <section class="reveal"><h2>{ui['faq']}</h2><div class="faq-list">{''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q, a in h['faq'][1:5])}</div></section></div>{side}</div>
 <section class="related"><div class="container"><h2>{ui['more_trips']}</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">{''.join(trip_card(lang, k) for k in others)}</div></div></section>
 </main>''' + footer(lang) + page_end()

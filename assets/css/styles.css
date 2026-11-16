@@ -341,3 +341,5 @@ mark.todo{background:#ffe066;color:#3a2a00;padding:1px 6px;border-radius:4px;fon
 
 /* ---------- Nota en páginas de viaje ---------- */
 .trip-note{background:var(--paper);border-left:4px solid var(--gold);padding:16px 20px;border-radius:var(--radius-sm);color:var(--muted);margin:32px 0 0}
+.poster{margin:32px 0 0;max-width:460px}
+.poster img{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow)}
